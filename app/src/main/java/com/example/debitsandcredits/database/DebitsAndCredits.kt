@@ -13,14 +13,12 @@ import java.sql.Date
 data class DebitsAndCreditsTable(
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "transId") val id: Int,
-    @ColumnInfo (name = "fkUserId", index = true)
-    val fkUserId: Long,
+    @ColumnInfo (name = "fkUserId", index = true) val fkUserId: Long,
     @ColumnInfo (name = "Date") val date: Date,
-    @ColumnInfo ( name = "fkPaymentType", index = true)
-    val fkPaymentType: Long
+    @ColumnInfo (name = "fkPaymentType", index = true) val fkPaymentType: Long
 )
 
-@Entity (tableName = "UsersTable")
+@Entity
 data class UsersTable (
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "pkUserId") val pkUserId: Int,
