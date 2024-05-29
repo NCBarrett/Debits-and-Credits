@@ -2,6 +2,7 @@ package com.example.debitsandcredits.database
 
 import androidx.room.TypeConverter
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken
+import com.google.gson.Gson
 import java.sql.Date
 
 class Converters {
@@ -18,11 +19,12 @@ class Converters {
     @TypeConverter
     fun listFromString(value: String?): List<String> {
         val listType = object : TypeToken<ArrayList<String?>?>() {}.type
-
+        return Gson().fromJson(value, listType)
     }
 
     @TypeConverter
     fun stringFromList(list: List<String?>?): String {
         val gson = Gson()
+        return gson.toJson(list)
     }
 }
