@@ -17,21 +17,39 @@ data class DebitsAndCreditsTable(
     @ColumnInfo (name = "transId") val id: Int,
     @ColumnInfo (name = "fkUserId", index = true) val fkUserId: Long,
     @ColumnInfo (name = "Date") val date: Date,
-    @ColumnInfo (name = "fkPaymentType", index = true) val fkPaymentType: Long
+    @ColumnInfo (name = "fkPaymentType", index = true) val fkPaymentType: Long,
+    @ColumnInfo (name = "fkOtherParty") val fkOtherParty: Long
 )
 
 @Entity
 data class UsersTable (
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "pkUserId") val pkUserId: Int,
-    @ColumnInfo (name = "UserName") val userName: String
+    @ColumnInfo (name = "UserName") val userName: String,
+    @ColumnInfo (name = "usePic") val userPic: String
+)
+
+@Entity
+data class PaymentTypeTable (
+    @PrimaryKey (autoGenerate = true)
+    @ColumnInfo (name = "pkTypeId") val pkTypeId: Int,
+    @ColumnInfo (name = "paymentType") val paymentType: String
 )
 
 data class TransAndUser (
     @Embedded val table: DebitsAndCreditsTable,
     @Relation(
         parentColumn = "fkUserId",
-        entityColumn = "UserName"
+        entityColumn = "pkUserId"
     )
     val users: List<UsersTable>
+)
+
+data class TransPaymentType (
+    @Embedded val table: DebitsAndCreditsTable,
+    @Relation(
+        parentColumn = "fkPaymentType",
+        entityColumn = "pkTypeId"
+    )
+    val payTypes: List<PaymentTypeTable>
 )

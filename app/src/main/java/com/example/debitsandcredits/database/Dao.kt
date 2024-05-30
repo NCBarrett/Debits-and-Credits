@@ -22,4 +22,8 @@ interface Dao {
 
     @Delete
     suspend fun deleteUser(user: UsersTable)
+
+    @Transaction
+    @Query("SELECT * FROM PaymentTypeTable ORDER BY paymentType ASC")
+    fun getAllPaymentTypes(): Flow<List<PaymentTypeTable>>
 }
