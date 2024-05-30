@@ -1,9 +1,11 @@
 package com.example.debitsandcredits.database
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 import java.sql.Date
 
 @Entity (tableName = "DebitsAndCreditsTable",
@@ -23,4 +25,13 @@ data class UsersTable (
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "pkUserId") val pkUserId: Int,
     @ColumnInfo (name = "UserName") val userName: String
+)
+
+data class TransAndUser (
+    @Embedded val table: DebitsAndCreditsTable,
+    @Relation(
+        parentColumn = "fkUserId",
+        entityColumn = "UserName"
+    )
+    val users: List<UsersTable>
 )
