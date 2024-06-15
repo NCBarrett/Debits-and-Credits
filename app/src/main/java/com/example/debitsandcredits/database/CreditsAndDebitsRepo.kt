@@ -1,12 +1,11 @@
 package com.example.debitsandcredits.database
 
 import android.app.Application
-import com.example.debitsandcredits.UserRepository
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
-class CreditsAndDebitsApp : Application() {
+class CreditsAndDebitsRepo : Application() {
 
     // No need to cancel this scope as it'll be torn down with the process
     val applicationScope = CoroutineScope(SupervisorJob())

@@ -1,9 +1,6 @@
-package com.example.debitsandcredits
+package com.example.debitsandcredits.database
 
 import androidx.annotation.WorkerThread
-import com.example.debitsandcredits.database.Dao
-import com.example.debitsandcredits.database.PaymentTypeTable
-import com.example.debitsandcredits.database.UsersTable
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository (private val Dao: Dao) {
